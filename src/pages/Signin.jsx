@@ -16,7 +16,7 @@ function Signin() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:7000/auth/signin', { email, password }, { withCredentials: true });
+            const response = await axios.post('https://trendonic-backend.onrender.com/auth/signin', { email, password }, { withCredentials: true });
             console.log(response.data)
             dispatch(setAuth(response.data.data));
             console.log(auth);

@@ -32,7 +32,7 @@ function Header() {
                 navigate('/home');
                 return;
             }
-            const response = await axios.post('http://localhost:7000/product/search', {input}, { withCredentials: true });
+            const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
             console.log(response.data);
             if(response.data.data){
                 dispatch(setProduct(response.data.data.products))
@@ -47,7 +47,7 @@ function Header() {
 
     const signoutUser = async () => {
         try {
-            const response = await axios.post("http://localhost:7000/auth/signout", {auth}, { withCredentials: true });
+            const response = await axios.post("https://trendonic-backend.onrender.com/auth/signout", {auth}, { withCredentials: true });
             console.log(response.data);
             dispatch(setAuth(null));
             setLog(false);

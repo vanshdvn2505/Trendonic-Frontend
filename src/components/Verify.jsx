@@ -13,7 +13,7 @@ function Verify() {
 
     const verify = async () => {
         try {
-            const response = await axios.post('http://localhost:7000/auth/verifyOtp', {otp, auth}, { withCredentials: true })
+            const response = await axios.post('https://trendonic-backend.onrender.com/auth/verifyOtp', {otp, auth}, { withCredentials: true })
             console.log(response.data);
             navigate('/home')
         }

@@ -21,7 +21,7 @@ function YourOrders() {
                 navigate('/home');
                 return;
             }
-            const response = await axios.post('http://localhost:7000/product/search', {input}, { withCredentials: true });
+            const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
             dispatch(setProduct(response.data.data.products))
             navigate('/search_results');
         }
@@ -34,7 +34,7 @@ function YourOrders() {
     const fetchOrders = async () => {
         try {
             const id = auth.email;
-            const response = await axios.post('http://localhost:7000/user/fetchOrders', {id}, {withCredentials: true});
+            const response = await axios.post('https://trendonic-backend.onrender.com/user/fetchOrders', {id}, {withCredentials: true});
             setOrders(response.data.data.orders);
         }
         catch(error){

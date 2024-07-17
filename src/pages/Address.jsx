@@ -16,7 +16,7 @@ function Address() {
     const fetchAddress = async () => {
         try {
             const id = auth.email;
-            const response = await axios.post('http://localhost:7000/user/fetchAddress', {id}, { withCredentials: true });
+            const response = await axios.post('https://trendonic-backend.onrender.com/user/fetchAddress', {id}, { withCredentials: true });
             setAddress(response.data.data.result)
         }
         catch(error){
@@ -33,7 +33,7 @@ function Address() {
                 navigate('/home');
                 return;
             }
-            const response = await axios.post('http://localhost:7000/product/search', {input}, { withCredentials: true });
+            const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
             dispatch(setProduct(response.data.data.products))
             navigate('/search_results');
         }
@@ -46,7 +46,7 @@ function Address() {
       const removeAddress = async (idx) => {
         try {
             const id = auth.email;
-            const response = await axios.post('http://localhost:7000/user/removeAddress', {id, idx}, { withCredentials: true });
+            const response = await axios.post('https://trendonic-backend.onrender.com/user/removeAddress', {id, idx}, { withCredentials: true });
             alert(response.data.message)
             location.reload()
         }

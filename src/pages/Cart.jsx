@@ -19,7 +19,7 @@ function Cart() {
     const fetchCart = async () => {
         try {
             const userId = auth.email;
-            const response = await axios.post('http://localhost:7000/product/fetchCart', { userId }, { withCredentials: true });
+            const response = await axios.post('https://trendonic-backend.onrender.com/product/fetchCart', { userId }, { withCredentials: true });
             setCart(response.data.data.result);
         }
         catch (error) {
@@ -36,7 +36,7 @@ function Cart() {
                 navigate('/home');
                 return;
             }
-            const response = await axios.post('http://localhost:7000/product/search', { input }, { withCredentials: true });
+            const response = await axios.post('https://trendonic-backend.onrender.com/product/search', { input }, { withCredentials: true });
             console.log(response.data);
             dispatch(setProduct(response.data.data.products))
             navigate('/search_results');
@@ -56,7 +56,7 @@ function Cart() {
             dispatch(removeItem(item));
             const id = item._id;
             const userId = auth.email;
-            const response = await axios.post('http://localhost:7000/product/removeFromCart', { id, userId }, { withCredentials: true });
+            const response = await axios.post('https://trendonic-backend.onrender.com/product/removeFromCart', { id, userId }, { withCredentials: true });
             alert(response.data.message);
             location.reload()
         }
