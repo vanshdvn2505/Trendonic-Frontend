@@ -24,7 +24,7 @@ function Home() {
   useEffect(() => {
     const fetchPanels = async () => {
       try {
-        const response = await axios.get('http://localhost:7000/product/panels', { withCredentials: true });
+        const response = await axios.get('https://trendonic-backend.onrender.com/product/panels', { withCredentials: true });
         setPanel1(response.data.data.prod1);
         setPanel2(response.data.data.prod2);
       }
@@ -44,7 +44,7 @@ function Home() {
             navigate('/home');
             return;
         }
-        const response = await axios.post('http://localhost:7000/product/search', {input}, { withCredentials: true });
+        const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
         console.log(response.data);
         dispatch(setProduct(response.data.data.products))
         navigate('/search_results');
@@ -74,7 +74,7 @@ function Home() {
   //   if(help == true){
   //     const upload = async () => {
   //       try {
-  //           const resp = await axios.post('http://localhost:7000/save-products')
+  //           const resp = await axios.post('https://trendonic-backend.onrender.com/save-products')
   //           console.log(resp.data);
   //       } catch (error) {
   //         console.log(error);
