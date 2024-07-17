@@ -58,7 +58,7 @@ function Home() {
   const openProduct = (prod) => {
     try {
         dispatch(setOpenProd(prod));
-        const newWindow = window.open('https://main--trendonic.netlify.app/home/open_product/' + prod._id, '_blank')
+        const newWindow = window.open('https://main--trendonic.netlify.app/open_product/' + prod._id, '_blank')
         if(newWindow){
             newWindow.focus();
         }
