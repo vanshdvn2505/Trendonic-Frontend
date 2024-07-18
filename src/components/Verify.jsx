@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setAuth } from '../features/auth/authSlice'
 import axios from 'axios'
-const BASE_URL = "http://localhost:7000";;
+const BASE_URL = "https://trendonic-backend.onrender.com";
 
 function Verify() {
 
