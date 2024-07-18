@@ -58,7 +58,7 @@ function Home() {
   const openProduct = (prod) => {
     try {
         dispatch(setOpenProd(prod));
-        const newWindow = window.open('https://trendonic-backend.onrender.com/open_product/' + prod._id, '_blank')
+        const newWindow = window.open('https://trendonic-frontend.onrender.com/open_product/' + prod._id, '_blank')
         if(newWindow){
             newWindow.focus();
         }
