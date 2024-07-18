@@ -8,7 +8,7 @@ import {setAuth} from '../features/auth/authSlice'
 import { setSearch } from '../features/search/searchSlice'
 import {setProduct} from '../features/product/productSlice'
 import {setOpenProd} from '../features/openProd/openProdSlice'
-const BASE_URL = "http://localhost:7000";
+const BASE_URL = "https://trendonic-backend.onrender.com";
 
 function Home() {
 
