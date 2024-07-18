@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-const BASE_URL = "http://localhost:7000";;
+const BASE_URL = "https://trendonic-backend.onrender.com";
 
 function Add_Address() {
 
