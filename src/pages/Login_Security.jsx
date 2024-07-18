@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { setAuth } from '../features/auth/authSlice'
-const BASE_URL = "http://localhost:7000";;
+const BASE_URL = "https://trendonic-backend.onrender.com";
 
 function Login_Security() {
 
