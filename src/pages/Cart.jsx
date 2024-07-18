@@ -6,7 +6,7 @@ import { setOpenProd } from '../features/openProd/openProdSlice'
 import { setSearch } from '../features/search/searchSlice'
 import { setProduct } from '../features/product/productSlice'
 import { useNavigate, Link } from 'react-router-dom';
-const BASE_URL = "http://localhost:7000";;
+const BASE_URL = "https://trendonic-backend.onrender.com";
 
 function Cart() {
 
