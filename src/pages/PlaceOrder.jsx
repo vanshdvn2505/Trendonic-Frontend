@@ -7,6 +7,7 @@ import { setSearch } from '../features/search/searchSlice'
 import {clearCart} from '../features/cart/cartSlice'
 import { setProduct } from '../features/product/productSlice'
 import { useNavigate } from 'react-router-dom';
+const BASE_URL = "http://localhost:7000";;
 
 function PlaceOrder() {
 
@@ -21,7 +22,7 @@ function PlaceOrder() {
   const fetchAddress = async () => {
     try {
         const id = auth.email;
-        const response = await axios.post('https://trendonic-backend.onrender.com/user/fetchAddress', {id}, { withCredentials: true });
+        const response = await axios.post(`${BASE_URL}/user/fetchAddress`, {id}, { withCredentials: true });
         setAddress(response.data.data.result)
     }
     catch(error){
@@ -38,7 +39,7 @@ function PlaceOrder() {
         navigate('/home');
         return;
       }
-      const response = await axios.post('https://trendonic-backend.onrender.com/product/search', { input }, { withCredentials: true });
+      const response = await axios.post(`${BASE_URL}/product/search`, { input }, { withCredentials: true });
       console.log(response.data);
       dispatch(setProduct(response.data.data.products))
       navigate('/search_results');
@@ -63,7 +64,7 @@ function PlaceOrder() {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.post('https://trendonic-backend.onrender.com/user/placeOrder', {auth, selected, payMethod, selectedAddress}, {withCredentials: true})
+      const response = await axios.post(`${BASE_URL}/user/placeOrder`, {auth, selected, payMethod, selectedAddress}, {withCredentials: true})
       alert(response.data.message);
       dispatch(clearCart());
       navigate('/home')

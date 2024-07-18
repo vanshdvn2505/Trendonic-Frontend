@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+const BASE_URL = "http://localhost:7000";;
 
 function Add_Address() {
 
@@ -25,7 +26,7 @@ function Add_Address() {
                 navigate('/home');
                 return;
             }
-            const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/product/search`, {input}, { withCredentials: true });
             console.log(response.data);
             dispatch(setProduct(response.data.data.products))
             navigate('/search_results');
@@ -47,7 +48,7 @@ function Add_Address() {
     const addAddress = async () => {
         try {
             const id = auth.email;
-            const response = await axios.post("https://trendonic-backend.onrender.com/user/addAddress", {id, details}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/user/addAddress`, {id, details}, { withCredentials: true });
             console.log(response.data);
             alert(response.data.message)
             navigate('/address')

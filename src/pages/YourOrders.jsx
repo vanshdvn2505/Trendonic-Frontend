@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { setSearch } from '../features/search/searchSlice'
 import {setProduct} from '../features/product/productSlice'
 import axios from 'axios';
+const BASE_URL = "http://localhost:7000";;
 
 function YourOrders() {
 
@@ -21,7 +22,7 @@ function YourOrders() {
                 navigate('/home');
                 return;
             }
-            const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/product/search`, {input}, { withCredentials: true });
             dispatch(setProduct(response.data.data.products))
             navigate('/search_results');
         }
@@ -34,7 +35,7 @@ function YourOrders() {
     const fetchOrders = async () => {
         try {
             const id = auth.email;
-            const response = await axios.post('https://trendonic-backend.onrender.com/user/fetchOrders', {id}, {withCredentials: true});
+            const response = await axios.post(`${BASE_URL}/user/fetchOrders`, {id}, {withCredentials: true});
             setOrders(response.data.data.orders);
         }
         catch(error){

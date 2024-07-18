@@ -8,7 +8,7 @@ import {setAuth} from '../features/auth/authSlice'
 import { setSearch } from '../features/search/searchSlice'
 import {setProduct} from '../features/product/productSlice'
 import {setOpenProd} from '../features/openProd/openProdSlice'
-
+const BASE_URL = "http://localhost:7000";
 
 function Home() {
 
@@ -24,7 +24,7 @@ function Home() {
   useEffect(() => {
     const fetchPanels = async () => {
       try {
-        const response = await axios.get('https://trendonic-backend.onrender.com/product/panels', { withCredentials: true });
+        const response = await axios.get(`${BASE_URL}/product/panels`, { withCredentials: true });
         setPanel1(response.data.data.prod1);
         setPanel2(response.data.data.prod2);
       }
@@ -44,7 +44,7 @@ function Home() {
             navigate('/home');
             return;
         }
-        const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
+        const response = await axios.post(`${BASE_URL}/product/search`, {input}, { withCredentials: true });
         console.log(response.data);
         dispatch(setProduct(response.data.data.products))
         navigate('/search_results');
@@ -58,7 +58,7 @@ function Home() {
   const openProduct = (prod) => {
     try {
         dispatch(setOpenProd(prod));
-        const newWindow = window.open('https://main--trendonic.netlify.app/open_product/' + prod._id, '_blank')
+        const newWindow = window.open('http://localhost:5173/open_product/' + prod._id, '_blank')
         if(newWindow){
             newWindow.focus();
         }
@@ -74,7 +74,7 @@ function Home() {
   //   if(help == true){
   //     const upload = async () => {
   //       try {
-  //           const resp = await axios.post('https://trendonic-backend.onrender.com/save-products')
+  //           const resp = await axios.post(`${BASE_URL}/save-products')
   //           console.log(resp.data);
   //       } catch (error) {
   //         console.log(error);

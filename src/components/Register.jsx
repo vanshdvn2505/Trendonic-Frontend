@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setAuth } from '../features/auth/authSlice'
 import axios from 'axios'
+const BASE_URL = "http://localhost:7000";;
 
 function Register() {
 
@@ -16,7 +17,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('https://trendonic-backend.onrender.com/auth/signup', { email, username, password }, { withCredentials: true });
+      const response = await axios.post(`${BASE_URL}/auth/signup`, { email, username, password }, { withCredentials: true });
       console.log(response.data)
       dispatch(setAuth(response.data.data));
       console.log(auth);

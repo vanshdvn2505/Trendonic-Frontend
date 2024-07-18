@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setAuth } from '../features/auth/authSlice'
 import axios from 'axios'
+const BASE_URL = "http://localhost:7000";;
 
 function Verify() {
 
@@ -13,7 +14,7 @@ function Verify() {
 
     const verify = async () => {
         try {
-            const response = await axios.post('https://trendonic-backend.onrender.com/auth/verifyOtp', {otp, auth}, { withCredentials: true })
+            const response = await axios.post(`${BASE_URL}/auth/verifyOtp`, {otp, auth}, { withCredentials: true })
             console.log(response.data);
             navigate('/home')
         }

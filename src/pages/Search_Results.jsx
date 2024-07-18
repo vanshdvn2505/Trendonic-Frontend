@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import {setOpenProd} from '../features/openProd/openProdSlice'
 import axios from 'axios'
+const BASE_URL = "http://localhost:7000";;
 
 function Search_Results() {
 
@@ -16,7 +17,7 @@ function Search_Results() {
     const openProduct = (prod) => {
     try {
         dispatch(setOpenProd(prod));
-        const newWindow = window.open('https://main--trendonic.netlify.app/open_product/' + prod._id, '_blank')
+        const newWindow = window.open('http://localhost:5173/open_product/' + prod._id, '_blank')
         if(newWindow){
             newWindow.focus();
         }
@@ -37,7 +38,7 @@ function Search_Results() {
         navigate('/signin');
         return;
       }
-      const response = await axios.post('https://trendonic-backend.onrender.com/product/addToCart', {id, userId}, { withCredentials: true });
+      const response = await axios.post(`${BASE_URL}/product/addToCart`, {id, userId}, { withCredentials: true });
       alert(response.data.message);
     }
     catch(error){

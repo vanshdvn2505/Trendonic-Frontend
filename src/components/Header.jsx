@@ -6,6 +6,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { setAuth } from '../features/auth/authSlice'
 import {setSearch} from '../features/search/searchSlice'
 import {setProduct} from '../features/product/productSlice'
+const BASE_URL = "http://localhost:7000";;
 
 function Header() {
 
@@ -32,7 +33,7 @@ function Header() {
                 navigate('/home');
                 return;
             }
-            const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/product/search`, {input}, { withCredentials: true });
             console.log(response.data);
             if(response.data.data){
                 dispatch(setProduct(response.data.data.products))
@@ -47,7 +48,7 @@ function Header() {
 
     const signoutUser = async () => {
         try {
-            const response = await axios.post("https://trendonic-backend.onrender.com/auth/signout", {auth}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/auth/signout`, {auth}, { withCredentials: true });
             console.log(response.data);
             dispatch(setAuth(null));
             setLog(false);

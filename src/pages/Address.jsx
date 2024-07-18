@@ -5,6 +5,7 @@ import { setSearch } from '../features/search/searchSlice'
 import {setProduct} from '../features/product/productSlice'
 import axios from 'axios';
 axios.defaults.withCredentials = true;
+const BASE_URL = "http://localhost:7000";;
 
 function Address() {
 
@@ -16,7 +17,7 @@ function Address() {
     const fetchAddress = async () => {
         try {
             const id = auth.email;
-            const response = await axios.post('https://trendonic-backend.onrender.com/user/fetchAddress', {id}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/user/fetchAddress`, {id}, { withCredentials: true });
             setAddress(response.data.data.result)
         }
         catch(error){
@@ -33,7 +34,7 @@ function Address() {
                 navigate('/home');
                 return;
             }
-            const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/product/search`, {input}, { withCredentials: true });
             dispatch(setProduct(response.data.data.products))
             navigate('/search_results');
         }
@@ -46,7 +47,7 @@ function Address() {
       const removeAddress = async (idx) => {
         try {
             const id = auth.email;
-            const response = await axios.post('https://trendonic-backend.onrender.com/user/removeAddress', {id, idx}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/user/removeAddress`, {id, idx}, { withCredentials: true });
             alert(response.data.message)
             location.reload()
         }

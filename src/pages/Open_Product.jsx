@@ -6,6 +6,7 @@ import { setSearch } from '../features/search/searchSlice'
 import {setProduct} from '../features/product/productSlice'
 import { addItem, removeItem, clearCart} from '../features/cart/cartSlice';
 import axios from 'axios'
+const BASE_URL = "http://localhost:7000";;
 
 
 function Open_Product() {
@@ -22,7 +23,7 @@ function Open_Product() {
   useEffect(() => {
     const fetchSimilar = async (input) => {
       try {
-        const response = await axios.post('https://trendonic-backend.onrender.com/product/similar', {input}, { withCredentials: true });
+        const response = await axios.post(`${BASE_URL}/product/similar`, {input}, { withCredentials: true });
         setPanel(response.data.data.prod);
       }
       catch(error){
@@ -41,7 +42,7 @@ function Open_Product() {
             navigate('/home');
             return;
         }
-        const response = await axios.post('https://trendonic-backend.onrender.com/product/search', {input}, { withCredentials: true });
+        const response = await axios.post(`${BASE_URL}/product/search`, {input}, { withCredentials: true });
         console.log(response.data);
         dispatch(setProduct(response.data.data.products))
         navigate('/search_results');
@@ -94,7 +95,7 @@ function Open_Product() {
         navigate('/signin');
         return;
       }
-      const response = await axios.post('https://trendonic-backend.onrender.com/product/addToCart', {id, userId});
+      const response = await axios.post(`${BASE_URL}/product/addToCart`, {id, userId});
       alert(response.data.message);
     }
     catch(error){

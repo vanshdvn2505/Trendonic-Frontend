@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { setAuth } from '../features/auth/authSlice'
-
+const BASE_URL = "http://localhost:7000";;
 
 function Login_Security() {
 
@@ -22,7 +22,7 @@ function Login_Security() {
 
     const saveChanges = async () => {
         try {
-            const response = await axios.post('https://trendonic-backend.onrender.com/user/saveChanges', {username, email, phone, currPass, newPass, auth}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/user/saveChanges`, {username, email, phone, currPass, newPass, auth}, { withCredentials: true });
             console.log(response.data);
             dispatch(setAuth(response.data.data));
             console.log(auth);
@@ -37,7 +37,7 @@ function Login_Security() {
 
     const verifyCode = async () => {
         try {
-            const response = await axios.post('https://trendonic-backend.onrender.com/user/verifyCode', {auth, otp}, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/user/verifyCode`, {auth, otp}, { withCredentials: true });
             console.log(response.data);
             setVerified(true);
         }
@@ -50,7 +50,7 @@ function Login_Security() {
     useEffect(() => {
         const sendEmail = async () => {
             try {
-                const response = await axios.post('https://trendonic-backend.onrender.com/user/sendEmail', {auth}, { withCredentials: true });
+                const response = await axios.post(`${BASE_URL}/user/sendEmail`, {auth}, { withCredentials: true });
                 console.log(response.data);
             }
             catch(error){

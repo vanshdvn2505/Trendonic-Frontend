@@ -6,6 +6,7 @@ import { setOpenProd } from '../features/openProd/openProdSlice'
 import { setSearch } from '../features/search/searchSlice'
 import { setProduct } from '../features/product/productSlice'
 import { useNavigate, Link } from 'react-router-dom';
+const BASE_URL = "http://localhost:7000";;
 
 function Cart() {
 
@@ -19,7 +20,7 @@ function Cart() {
     const fetchCart = async () => {
         try {
             const userId = auth.email;
-            const response = await axios.post('https://trendonic-backend.onrender.com/product/fetchCart', { userId }, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/product/fetchCart`, { userId }, { withCredentials: true });
             setCart(response.data.data.result);
         }
         catch (error) {
@@ -36,7 +37,7 @@ function Cart() {
                 navigate('/home');
                 return;
             }
-            const response = await axios.post('https://trendonic-backend.onrender.com/product/search', { input }, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/product/search`, { input }, { withCredentials: true });
             console.log(response.data);
             dispatch(setProduct(response.data.data.products))
             navigate('/search_results');
@@ -56,7 +57,7 @@ function Cart() {
             dispatch(removeItem(item));
             const id = item._id;
             const userId = auth.email;
-            const response = await axios.post('https://trendonic-backend.onrender.com/product/removeFromCart', { id, userId }, { withCredentials: true });
+            const response = await axios.post(`${BASE_URL}/product/removeFromCart`, { id, userId }, { withCredentials: true });
             alert(response.data.message);
             location.reload()
         }
@@ -77,7 +78,7 @@ function Cart() {
     const openProduct = (prod) => {
         try {
             dispatch(setOpenProd(prod));
-            const newWindow = window.open('https://main--trendonic.netlify.app/open_product/' + prod._id, '_blank')
+            const newWindow = window.open('http://localhost:5173/open_product/' + prod._id, '_blank')
             if (newWindow) {
                 newWindow.focus();
             }
