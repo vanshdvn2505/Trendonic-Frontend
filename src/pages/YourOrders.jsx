@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { setSearch } from '../features/search/searchSlice'
 import {setProduct} from '../features/product/productSlice'
 import axios from 'axios';
-const BASE_URL = "http://localhost:7000";;
+const BASE_URL = "https://trendonic-backend.onrender.com";
 
 function YourOrders() {
 
