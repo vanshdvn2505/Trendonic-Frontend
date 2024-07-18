@@ -7,7 +7,7 @@ import { setSearch } from '../features/search/searchSlice'
 import {clearCart} from '../features/cart/cartSlice'
 import { setProduct } from '../features/product/productSlice'
 import { useNavigate } from 'react-router-dom';
-const BASE_URL = "http://localhost:7000";;
+const BASE_URL = "https://trendonic-backend.onrender.com";
 
 function PlaceOrder() {
 
